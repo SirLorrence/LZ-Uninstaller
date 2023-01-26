@@ -23,20 +23,28 @@ if exist %DDUFolder% (
 
 :start
 echo Choose which driver to uninstall
-echo [B] All [N] Nvidia [A] AMD [I] Intel
+echo [0] All [1] Nvidia [2] AMD [3] Intel
 REM if true then it will continue to the over drivers, flowing over to the other sets
 set batchOverflow=False
-set /p input= Enter Input: 
+set /p "input=Enter Input: "
 
 REM This is pain..... cant use OR :(
-if %input% == B goto BATCH
-if %input% == b goto BATCH
-if %input% == N goto NVCMD
-if %input% == n goto NVCMD
-if %input% == A goto AMDCMD
-if %input% == a goto AMDCMD
-if %input% == I goto INTELCMD
-if %input% == i goto INTELCMD
+if %errorlevel% neq 0 goto EExit
+
+if %input% == 0 goto BATCH
+if %input% == 1 goto NVCMD
+if %input% == 2 goto AMDCMD
+if %input% == 3 goto INTELCMD
+
+
+REM if %input% == B goto BATCH
+REM if %input% == b goto BATCH
+REM if %input% == N goto NVCMD
+REM if %input% == n goto NVCMD
+REM if %input% == A goto AMDCMD
+REM if %input% == a goto AMDCMD
+REM if %input% == I goto INTELCMD
+REM if %input% == i goto INTELCMD
 
 
 goto LOOP
